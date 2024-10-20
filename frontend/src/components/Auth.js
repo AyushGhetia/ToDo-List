@@ -10,8 +10,8 @@ const Auth = ({ handleLogin }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const url = isRegister
-      ? 'https://todo-list-backend-42a6.onrender.com/api/auth/register'
-      : 'https://todo-list-backend-42a6.onrender.com/api/auth/login';
+      ? 'http://localhost:5000/api/auth/register'
+      : 'http://localhost:5000/api/auth/login';
       
     try {
       const { data } = await axios.post(url, { username, password });
