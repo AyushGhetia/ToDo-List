@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { io } from 'socket.io-client';
 
-const socket = io('https://todo-list-backend-42a6.onrender.com');
+const socket = io('http://localhost:5000');
 
 const TaskApp = ({ setToken }) => {
   const [tasks, setTasks] = useState([]);
@@ -18,7 +18,7 @@ const TaskApp = ({ setToken }) => {
 
   const fetchTasks = async () => {
     try {
-      const { data } = await axios.get('https://todo-list-backend-42a6.onrender.com/api/tasks', {
+      const { data } = await axios.get('http://localhost:5000/api/tasks', {
         headers: { Authorization: localStorage.getItem('token') },
       });
       setTasks(data);
@@ -45,7 +45,7 @@ const TaskApp = ({ setToken }) => {
 
   const updateTask = async (id, updatedTask) => {
     try {
-      await axios.put(`https://todo-list-backend-42a6.onrender.com/api/tasks/${id}`, updatedTask, {
+      await axios.put(`http://localhost:5000/api/tasks/${id}`, updatedTask, {
         headers: { Authorization: localStorage.getItem('token') },
       });
     } catch (err) {
@@ -55,7 +55,7 @@ const TaskApp = ({ setToken }) => {
 
   const deleteTask = async (id) => {
     try {
-      await axios.delete(`https://todo-list-backend-42a6.onrender.com/api/tasks/${id}`, {
+      await axios.delete(`http://localhost:5000/api/tasks/${id}`, {
         headers: { Authorization: localStorage.getItem('token') },
       });
       fetchTasks();
